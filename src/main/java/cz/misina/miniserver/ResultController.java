@@ -12,11 +12,14 @@ public class ResultController {
 
     private final AtomicLong counter = new AtomicLong();
 
-    @Autowired
     private Delayer delayer;
 
-    @Autowired
     private ResultGenerator resultGenerator;
+
+    public ResultController(@Autowired Delayer delayer, @Autowired ResultGenerator resultGenerator) {
+        this.delayer = delayer;
+        this.resultGenerator = resultGenerator;
+    }
 
     @RequestMapping("/result")
     public Result result(@RequestParam(value="delay", defaultValue="0") long delay) {
